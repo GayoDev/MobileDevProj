@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<ImageButton>(R.id.imagePlayButton).setOnClickListener(){
             val intent = Intent(this, GameActivity::class.java)
+            startActivity(intent)
         }
     }
 }
