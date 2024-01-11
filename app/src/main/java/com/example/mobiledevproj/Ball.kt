@@ -34,7 +34,7 @@ class Ball {
 
     }
 
-    fun update(level: Int) {
+    fun update() {
 
         y += speedY
 
@@ -42,13 +42,6 @@ class Ball {
 
         if (x > maxX) x = maxX.toFloat()
         else if (x < 0) x = 0f
-
-        if (y > maxY) {
-            y = 0f
-            speedY -= 5
-        }
-
-
 
         detectCollision.left = x.toInt()
         detectCollision.top = y.toInt()

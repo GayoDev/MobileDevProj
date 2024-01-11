@@ -14,5 +14,10 @@ class GameOverActivity : AppCompatActivity() {
             val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
         }
+
+        findViewById<ImageButton>(R.id.imageButtonHighScore).setOnClickListener(){
+            val intent = Intent(this, HighscoreActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

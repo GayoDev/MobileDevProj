@@ -25,12 +25,12 @@ class Car {
         bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.car)
         x = 0f - bitmap.width
         y = (generator.nextInt(maxY - bitmap.height) ).toFloat()
-        speed = 10
+        speed = generator.nextInt(11)
 
         detectCollision = Rect(x.toInt() ,y.toInt(), bitmap.width, bitmap.height)
     }
 
-    fun update(level: Int) {
+    fun update() {
         x += speed
 
         if (x > (maxX.toFloat() + bitmap.width)){
@@ -38,9 +38,10 @@ class Car {
             y = (generator.nextInt(maxY - bitmap.height) ).toFloat() + 2
         }
 
-        detectCollision.left = x.toInt()
-        detectCollision.top = y.toInt()
-        detectCollision.right = x.toInt() + bitmap.width
-        detectCollision.bottom = y.toInt() + bitmap.height
+        detectCollision.left = x.toInt() - 10
+        detectCollision.top = y.toInt() + 70
+        detectCollision.right = x.toInt() + bitmap.width + 10
+        detectCollision.bottom = y.toInt() + bitmap.height - 70
     }
 }
+

@@ -20,11 +20,10 @@ class GameView : SurfaceView, Runnable {
     var paintTxt : Paint
     var canvas : Canvas? = null
 
-    var scoreIncrease = false
     var level = 0
 
     var ball : Ball
-    var cars = arrayListOf<Car>()
+    var cars : MutableList<Car> = arrayListOf()
 
     var score = 0
 
@@ -40,7 +39,7 @@ class GameView : SurfaceView, Runnable {
 
         ball = Ball(context, width, height)
 
-        for ( i in 1..3){
+        for ( i in 1..4){
             cars.add(Car(context,width, height))
         }
 
@@ -51,16 +50,15 @@ class GameView : SurfaceView, Runnable {
     }
 
     fun update(){
-        ball.update(level)
+        ball.update()
+        updateLevel()
         for (car in cars) {
-            car.update(level)
+            car.update()
             if (car.detectCollision.intersect(ball.detectCollision)){
                 val intent = Intent(context, GameOverActivity::class.java)
                 context.startActivity(intent)
             }
         }
-
-
     }
 
     fun draw() {
@@ -75,7 +73,7 @@ class GameView : SurfaceView, Runnable {
                 canvas?.drawBitmap(car.bitmap, car.x , car.y , paint)
             }
 
-            canvas?.drawText("Score:$score",10f, 200f, paintTxt)
+            canvas?.drawText("Level:$level",10f, 200f, paintTxt)
             surfaceHolder.unlockCanvasAndPost(canvas)
         }
     }
@@ -97,6 +95,17 @@ class GameView : SurfaceView, Runnable {
     fun pause() {
         isPlaying = false
         gameThread?.join()
+    }
+
+    fun updateLevel(){
+        if (ball.y - ball.bitmap.height < 0f){
+            ball.y = height.toFloat()
+            ball.speedY -= 3
+            for (car in cars){
+                car.speed += 3
+            }
+            level += 1
+        }
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
