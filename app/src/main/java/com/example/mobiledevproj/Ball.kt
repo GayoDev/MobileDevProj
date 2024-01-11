@@ -11,9 +11,10 @@ class Ball {
     var x = 0f
     var y = 0f
 
-    var speed = 0
+    var speedY = -10
+    var speedX = 0
+
     var isBoosting = false
-    final val Acc = -10
     final val MAX_SPEED = 20
     final val MIN_SPEED = 1
 
@@ -23,7 +24,7 @@ class Ball {
     lateinit var detectCollision : Rect
 
     constructor(context: Context, width : Int, height:Int ) {
-        bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.ball)
+        bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.ballplayer)
         maxY = height - bitmap.height
         maxX = width - bitmap.width
         x = (maxX.toFloat() /2f)
@@ -33,17 +34,21 @@ class Ball {
 
     }
 
-    fun update() {
-        if (isBoosting) speed += 1
-        else speed -=2
-        if (speed > MAX_SPEED) speed = MAX_SPEED
-        else if (speed < MIN_SPEED) speed = MIN_SPEED
+    fun update(level: Int) {
+
+        y += speedY
+
+        x += speedX
+
+        if (x > maxX) x = maxX.toFloat()
+        else if (x < 0) x = 0f
+
+        if (y > maxY) {
+            y = 0f
+            speedY -= 5
+        }
 
 
-        y += speed + Acc
-
-        if (y > maxY) y = maxY.toFloat()
-        else if (y < 0)  y = 0f
 
         detectCollision.left = x.toInt()
         detectCollision.top = y.toInt()
