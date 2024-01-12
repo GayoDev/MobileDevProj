@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -8,7 +9,7 @@ android {
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.mobiledevproj"
+        applicationId = "com.android.application"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
@@ -37,6 +38,8 @@ android {
 
 dependencies {
 
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.8.0")
