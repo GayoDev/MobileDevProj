@@ -39,8 +39,9 @@ class GameView : SurfaceView, Runnable {
 
         ball = Ball(context, width, height)
 
-        for ( i in 1..4){
-            cars.add(Car(context,width, height))
+        for ( i in 1..5){
+            if (i % 2 == 0) cars.add(Car(context,width, (height * i)/5, false))
+            else cars.add(Car(context,width, (height * i)/5, true))
         }
 
     }
@@ -70,7 +71,8 @@ class GameView : SurfaceView, Runnable {
             canvas?.drawBitmap(ball.bitmap, ball.x , ball.y , paint)
 
             for (car in cars){
-                canvas?.drawBitmap(car.bitmap, car.x , car.y , paint)
+                if (car.isReversed) canvas?.drawBitmap(car.reversedBitmap, car.x , car.y , paint)
+                else canvas?.drawBitmap(car.bitmap, car.x , car.y , paint)
             }
 
             canvas?.drawText("Level:$level",10f, 200f, paintTxt)
