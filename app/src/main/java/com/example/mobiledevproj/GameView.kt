@@ -25,8 +25,6 @@ class GameView : SurfaceView, Runnable {
     var ball : Ball
     var cars : MutableList<Car> = arrayListOf()
 
-    var score = 0
-
     constructor(context: Context, width : Int, height: Int) : super(context) {
 
         surfaceHolder = holder
@@ -110,6 +108,7 @@ class GameView : SurfaceView, Runnable {
         }
     }
 
+
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         super.onTouchEvent(event)
         when(event?.action){
@@ -122,6 +121,7 @@ class GameView : SurfaceView, Runnable {
                 return true
             }
             MotionEvent.ACTION_UP -> {
+                ball.speedX = 0
                 return true
             }
         }
