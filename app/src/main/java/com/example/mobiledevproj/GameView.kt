@@ -20,7 +20,7 @@ class GameView : SurfaceView, Runnable {
     var paintTxt : Paint
     var canvas : Canvas? = null
 
-    var level = 0
+    var level : Int = 0
 
     var ball : Ball
     var cars : MutableList<Car> = arrayListOf()
@@ -55,6 +55,7 @@ class GameView : SurfaceView, Runnable {
             car.update()
             if (car.detectCollision.intersect(ball.detectCollision)){
                 val intent = Intent(context, GameOverActivity::class.java)
+                intent.putExtra("level", level)
                 context.startActivity(intent)
             }
         }
