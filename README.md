@@ -1,5 +1,5 @@
 Frogger Type Game - Projeto Android de Desenvolvimento de Jogos para Plataformas Móveis. 
-João Gaui n25962
+João Gaio n25962
 ===========================================
 
 
@@ -19,7 +19,7 @@ Frogger Type Game é, como o nome indica, um jogo baseado no clássico jogo "Fro
 
 ## Características
 
-- **Controlos Intuitivos:** Expetiência fluída de gameplay construída especificamente para mobile.
+- **Controlos Intuitivos:** Experiência fluída de gameplay construída especificamente para mobile.
 - **Fast Paced Gameplay:** Progressão veloz que fumenta a adrenalina até ao inevitável "crash".
 - **High Scores:** Implementação de high scores através de níveis com recurso ao firebase.
 
@@ -135,7 +135,7 @@ class GameActivity : AppCompatActivity() {
 
 _HighscoreActivity_
 -
-Nesta Activity exibimos uma lista dos níveis mais altos armazenados no firestore (base de dados do firebase), de modo decrescente, recorrendo à classe Player para obter a lista de jogadores armazenados na base de dados. Infelizmente, apesar dos valores dos níveis serem corretamente armazenados no firestore, nada é exibida na lista de momento.
+Nesta Activity exibimos uma lista dos níveis mais altos armazenados no firestore (base de dados do firebase), de modo decrescente, recorrendo à classe Player para obter a lista de jogadores armazenados na base de dados. Infelizmente, apesar dos valores dos níveis serem corretamente armazenados no firestore, nada é exibido na lista de momento.
 ```kotlin
 package com.example.mobiledevproj
 
@@ -423,7 +423,7 @@ class GameView : SurfaceView, Runnable {
 
     }
 ```
-De seguida é estabelcida as funções complementares da função run: control, draw e update. Draw serve para controlar o que é desenhado e de que modo, update atualiza o game state e verifica colisões entre os carros e a bola, sendo que nesse caso trocamos para a GameOverActivity e armazena-se o nível a que o jogador ficou. O control simplesmente controla a thread count.
+De seguida são estabelcidas as funções complementares da função run: control, draw e update. Draw serve para controlar o que é desenhado e de que modo, update atualiza o game state e verifica colisões entre os carros e a bola, sendo que nesse caso trocamos para a GameOverActivity e armazena-se o nível a que o jogador ficou. O control simplesmente controla a thread count.
 ```kotlin
 fun control(){
         Thread.sleep(17)
@@ -515,7 +515,7 @@ fun resume(){
 ```
 _GameOverActivity_
 -
-A GameOverActivity é a atividade que o jogador encontar ao perder. O nível armazenado na GameView quando o jogador perde é recolhido aqui e chamado na função storePlayerLevel(). Desta atividade é possível voltar ao jogo ou verificar os highscores.
+A GameOverActivity é a atividade que o jogador encontra ao perder. O nível armazenado na GameView quando o jogador perde é recolhido aqui e chamado na função storePlayerLevel(). Desta atividade é possível voltar ao jogo ou verificar os highscores.
 ```kotlin
 package com.example.mobiledevproj
 
