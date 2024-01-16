@@ -79,6 +79,17 @@ class GameView : SurfaceView, Runnable {
         }
     }
 
+    fun updateLevel(){
+        if (ball.y - ball.bitmap.height < 0f){
+            ball.y = height.toFloat()
+            ball.speedY -= 3
+            for (car in cars){
+                car.speed += 3
+            }
+            level += 1
+        }
+    }
+
     override fun run() {
         while (isPlaying){
             update()
@@ -96,17 +107,6 @@ class GameView : SurfaceView, Runnable {
     fun pause() {
         isPlaying = false
         gameThread?.join()
-    }
-
-    fun updateLevel(){
-        if (ball.y - ball.bitmap.height < 0f){
-            ball.y = height.toFloat()
-            ball.speedY -= 3
-            for (car in cars){
-                car.speed += 3
-            }
-            level += 1
-        }
     }
 
 
